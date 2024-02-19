@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "mychart.fullname" . }}-doit-collector-config
+  labels:
+    doit.com/metrics-deployment-id: sc2U1kKZT6d5tA4VQ3DW
+    k8s-app: opentelemetry-collector
+  {{- include "mychart.labels" . | nindent 4 }}
+data:
+  collector.yaml: {{ .Values.doitCollectorConfig.collectorYaml | toYaml | indent
+    1 }}
